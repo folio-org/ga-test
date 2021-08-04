@@ -21,4 +21,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo "building a release based on tag, ${ GITHUB_REF }"
+        run: echo "building a release based on tag, ${GITHUB_REF}"
