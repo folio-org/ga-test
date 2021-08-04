@@ -28,8 +28,8 @@ jobs:
 
       - name: Get version from package.json
         id: package_version
-          uses: notiz-dev/github-action-json-property@release
-          with: 
+        uses: notiz-dev/github-action-json-property@release
+        with: 
           path: 'package.json'
           prop_path: 'version'
 
