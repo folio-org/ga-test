@@ -23,7 +23,7 @@ jobs:
         run: echo "building a release based on tag, ${GITHUB_REF}"
 
       - name: Set GH_TAG
-        run: echo "GH_TAG=$(echo ${GITHUB_REF#refs/tags/v}"
+        run: echo "GH_TAG=$(echo ${GITHUB_REF#refs/tags/v})"
         id: extract_tag
 
       - name: Get version from package.json
