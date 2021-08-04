@@ -33,6 +33,9 @@ jobs:
           path: 'package.json'
           prop_path: 'version'
 
+      - name: Set PACKAGE_VERSION
+        run: echo "PACKAGE_VERSION=$(echo ${steps.package_version.outputs.prop})" >> GITHUB_ENV
+
       - name: make sure github tag matches package version
-        if: ${{ env.TAG_VERSION != steps.package_version.outputs.prop }} 
-        run: echo "Failure: Tag version, ${{ $env.TAG_VERSION }}, does not match package.json version, ${{ steps.package_version.outputs.prop }}" && exit 1 
+        if: ${{ env.TAG_VERSION != env.PACKAGE_VERSION }} 
+        run: echo "Failure: Tag version, ${{ $env.TAG_VERSION }}, does not match package.json version, ${{ env.PACKAGE_VERSION }}" && exit 1 
