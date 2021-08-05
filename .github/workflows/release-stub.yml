@@ -23,7 +23,7 @@ jobs:
         run: echo "building a release based on tag, ${GITHUB_REF}"
 
       - name: Set TAG_VERSION
-        run: echo "TAG_VERSION=$(echo ${GITHUB_REF#refs/tags/v})" >> GITHUB_ENV && echo ${TAG_VERSION}
+        run: echo "TAG_VERSION=$(echo ${GITHUB_REF#refs/tags/v})" >> $GITHUB_ENV
 
       - name: Get version from package.json
         id: package_version
@@ -39,8 +39,7 @@ jobs:
         if: ${{ env.TAG_VERSION }} != ${{ env.PACKAGE_VERSION }} 
         run: |
           echo ${{env.TAG_VERSION }}
-          echo "Tag version, ${TAG_VERSION}, does not match package.json version, ${PACKAGE_VERSION}"  
+          echo "Tag version, ${{ env.TAG_VERSION }}, does not match package.json version, ${{ env.PACKAGE_VERSION }}"  
           exit 1
         env:
           PACKAGE_VERSION: ${{ steps.package_version.outputs.prop }}
-          TAG_VERSION: ${{ env.TAG_VERSION }}
