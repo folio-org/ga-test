@@ -38,6 +38,6 @@ jobs:
 
       - name: make sure github tag matches package version
         if: ${{ env.TAG_VERSION != env.PACKAGE_VERSION }} 
-        run: echo "Tag version, ${TAG_VERSION}, does not match package.json version, ${env.PACKAGE_VERSION}" && exit 1 
+        run: echo "Tag version, ${TAG_VERSION}, does not match package.json version, ${PACKAGE_VERSION}" && exit 1 
         env:
           PACKAGE_VERSION: ${{ steps.package_version.outputs.prop }}
