@@ -20,7 +20,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo "building a release based on tag, ${GITHUB_REF}"
+        run: echo "Building release tag, ${GITHUB_REF}"
 
       - name: Set TAG_VERSION
         run: echo "TAG_VERSION=$(echo ${GITHUB_REF#refs/tags/v})" >> $GITHUB_ENV
@@ -33,9 +33,8 @@ jobs:
           prop_path: 'version'
 
       - name: make sure github tag matches package version
-        if: ${{ env.TAG_VERSION }} != steps.version.outputs.prop
+        if: ${{ env.TAG_VERSION != steps.package_version.outputs.prop }}
         run: |
-          echo ${{env.TAG_VERSION }}
           echo "Tag version, ${{ env.TAG_VERSION }}, does not match package.json version, ${{ env.PACKAGE_VERSION }}"  
           exit 1
         env:
