@@ -5,6 +5,7 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
+  workflow_dispatch:
 
 jobs:
   # This workflow contains a single job called "build"
@@ -39,3 +40,10 @@ jobs:
           exit 1
         env:
           PACKAGE_VERSION: ${{ steps.package_version.outputs.prop }}
+
+      - name: Create .npmignore before publishing package
+        run: | 
+          echo ".github" >> .npmignore 
+          echo ".scannerwork" >> .npmignore
+          echo "artifacts" >> .npmignore
+          cat .npmignore 
