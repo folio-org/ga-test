@@ -24,11 +24,11 @@ jobs:
         run: echo "Building release tag, ${GITHUB_REF}"
  
       - name: Test if VAR_A is true
-        if: env.VAR_A == true
+        if: ${{ env.VAR_A == true }}
         run: echo "VAR_A is true"
      
       - name: Test if VAR_B is false
-        if: env.VAR_B == true
+        if: ${{ env.VAR_B == true }}
         run: echo "VAR_B is true. But should be false"
      
         
